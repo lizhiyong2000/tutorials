@@ -1,4 +1,4 @@
-package com.examle.oauth.config;
+package com.example.oauth.client1.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

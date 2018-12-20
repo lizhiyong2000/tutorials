@@ -1,0 +1,13 @@
+server:
+    port: 8082
+    servlet:
+        context-path: /client2
+security:
+    oauth2:
+        client:
+            clientId: test_client
+            clientSecret: test_client
+            accessTokenUri: http://localhost:8080/auth/oauth/token
+            userAuthorizationUri: http://localhost:8080/auth/oauth/authorize
+        resource:
+            userInfoUri: http://localhost:8080/auth/user/me

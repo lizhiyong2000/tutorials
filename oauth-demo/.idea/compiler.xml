@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="client1" />
+        <module name="client2" />
         <module name="oauth-demo" />
       </profile>
     </annotationProcessing>

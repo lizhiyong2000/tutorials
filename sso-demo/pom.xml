@@ -5,8 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.oauth</groupId>
-    <artifactId>oauth-demo</artifactId>
+    <artifactId>sso-demo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>client1</module>
+        <module>client2</module>
+    </modules>
+
 
     <properties>
         <spring-boot.version>2.1.0.RELEASE</spring-boot.version>
@@ -93,34 +99,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.6.RELEASE</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <mainClass>com.example.oauth.OauthDemoApplication</mainClass>
-                        </configuration>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
 
-    </build>
 </project>

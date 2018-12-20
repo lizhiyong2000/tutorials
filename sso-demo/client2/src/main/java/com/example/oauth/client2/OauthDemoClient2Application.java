@@ -1,12 +1,12 @@
-package com.examle.oauth;
+package com.example.oauth.client2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OauthDemoApplication {
+public class OauthDemoClient2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(OauthDemoApplication.class, args);
+        SpringApplication.run(OauthDemoClient2Application.class, args);
     }
 }

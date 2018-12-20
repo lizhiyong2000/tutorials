@@ -1,3 +1,9 @@
-security:
-    user:
-        password: password
+server:
+    port: 8080
+    servlet:
+        context-path: /auth
+logging:
+  level:
+    org:
+        springframework:
+            security: DEBUG

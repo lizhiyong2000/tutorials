@@ -1,4 +1,4 @@
-package com.examle.oauth.config;
+package com.example.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -72,9 +72,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         Map<String, ClientDetails> clientDetailsStore = new HashMap<>();
         clientDetailsStore.put("test_client", new BaseClientDetails("test_client", "",
-                "all", "password, refresh_token", "ROLE_CLIENT, ROLE_TRUSTED_CLIENT"));
+                "all", "implicit, authorization_code", "ROLE_CLIENT, ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login")); //"http://localhost:8081/client1/login")
 
         inMemoryClientDetailsService.setClientDetailsStore(clientDetailsStore);
+
+
+//        .autoApprove(true)
+//                .redirectUris("http://localhost:8082/ui/login","http://localhost:8083/ui2/login");
 
 
         return inMemoryClientDetailsService;
