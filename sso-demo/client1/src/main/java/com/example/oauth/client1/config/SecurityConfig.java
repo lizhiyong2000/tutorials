@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
@@ -26,21 +27,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.antMatcher("/**")
+        http.rememberMe()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/", "/login**")
+                .anyRequest().authenticated()
+                .antMatchers("/login**").permitAll()
+                .antMatchers("/logout**").permitAll()
+                .antMatchers("/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
+                .antMatchers("/auth/**", "/oauth2/**").permitAll()
+                .and()
+                .formLogin().permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/logout_success")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
-                .anyRequest()
-                .authenticated();
+                .and()
+                .csrf()
+                .disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication() // creating user in memory
                 .withUser("user")
-                .password("password").roles("USER")
+                .password(passwordEncoder().encode("password")).roles("USER")
                 .and().withUser("admin")
-                .password("password").authorities("ROLE_ADMIN");
+                .password(passwordEncoder().encode("password")).authorities("ADMIN");
     }
 
 
@@ -53,19 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
-
-
-    AuthorizationEndpoint endpoint;
-
-//    @Bean
-//    public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
-//        FilterRegistrationBean<OAuth2ClientContextFilter> registration = new FilterRegistrationBean<>();
-//        registration.setFilter(filter);
-//        registration.setOrder(-100);
-//        return registration;
-//    }
 
 
 }

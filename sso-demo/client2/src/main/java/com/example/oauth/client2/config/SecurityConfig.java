@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -28,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                     .antMatchers("/login**").permitAll()
                     .antMatchers("/logout**").permitAll()
-                    .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                    .antMatchers("/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
                     .antMatchers("/auth/**", "/oauth2/**").permitAll()
             .and()
                 .formLogin().permitAll()
@@ -36,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutSuccessUrl("/logout_success")
                     .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
                     .permitAll()
             .and()
                 .csrf()
@@ -46,9 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication() // creating user in memory
                 .withUser("user")
-                .password("password").roles("USER")
+                .password(passwordEncoder().encode("password")).roles("USER")
                 .and().withUser("admin")
-                .password("password").authorities("ROLE_ADMIN");
+                .password(passwordEncoder().encode("password")).authorities("ADMIN");
     }
 
 
@@ -61,8 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
-
-
 }

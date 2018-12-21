@@ -9,17 +9,6 @@ import java.security.Principal;
 @RestController
 public class DemoController {
 
-//    @GetMapping(path = "/")
-//    public String index() {
-//        return "index";
-//    }
-//
-//
-//    @GetMapping(path = "/hello")
-//    public String hello() {
-//        return "hello";
-//    }
-//
 
     @GetMapping(path = "/api/test")
     public String api1() {

@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                     .antMatchers("/login**").permitAll()
                     .antMatchers("/logout**").permitAll()
-                    .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                    .antMatchers("/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
                     .antMatchers("/auth/**", "/oauth2/**").permitAll()
             .and()
                 .formLogin().permitAll()
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user")
                 .password(passwordEncoder().encode("password")).roles("USER")
                 .and().withUser("admin")
-                .password(passwordEncoder().encode("password")).authorities("ROLE_ADMIN");
+                .password(passwordEncoder().encode("password")).authorities("ADMIN");
     }
 
 

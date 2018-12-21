@@ -77,17 +77,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         Map<String, ClientDetails> clientDetailsStore = new HashMap<>();
 
         BaseClientDetails clientDetails =  new BaseClientDetails("test_client", "",
-                "all", "implicit,authorization_code", "ROLE_CLIENT,ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login");
+                "all", "implicit,authorization_code", "ROLE_USER,ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login,http://localhost:8082/client2/login");
 
         clientDetails.setClientSecret(passwordEncoder.encode("test_client"));
-        clientDetailsStore.put("test_client",clientDetails); //"http://localhost:8081/client1/login")
+        clientDetailsStore.put("test_client",clientDetails);
 
         inMemoryClientDetailsService.setClientDetailsStore(clientDetailsStore);
-
-
-//        .autoApprove(true)
-//                .redirectUris("http://localhost:8082/ui/login","http://localhost:8083/ui2/login");
-
 
         return inMemoryClientDetailsService;
     }
