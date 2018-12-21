@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -31,6 +32,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -60,7 +64,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(
-                User.withUsername("user").password("password").roles("USER").build());
+                User.withUsername("user").password(passwordEncoder.encode("password")).roles("USER").build());
         return manager;
     }
 
@@ -71,8 +75,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         InMemoryClientDetailsService inMemoryClientDetailsService = new InMemoryClientDetailsService();
 
         Map<String, ClientDetails> clientDetailsStore = new HashMap<>();
-        clientDetailsStore.put("test_client", new BaseClientDetails("test_client", "",
-                "all", "implicit, authorization_code", "ROLE_CLIENT, ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login")); //"http://localhost:8081/client1/login")
+
+        BaseClientDetails clientDetails =  new BaseClientDetails("test_client", "",
+                "all", "implicit,authorization_code", "ROLE_CLIENT,ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login");
+
+        clientDetails.setClientSecret(passwordEncoder.encode("test_client"));
+        clientDetailsStore.put("test_client",clientDetails); //"http://localhost:8081/client1/login")
 
         inMemoryClientDetailsService.setClientDetailsStore(clientDetailsStore);
 
