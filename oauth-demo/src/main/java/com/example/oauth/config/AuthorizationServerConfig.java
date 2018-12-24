@@ -13,22 +13,12 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetails;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.BaseClientDetails;
-import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
-import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Configuration
@@ -43,23 +33,31 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetails());
+
+        clients.inMemory()
+                .withClient("test_client")
+                .authorizedGrantTypes("client_credentials", "password", "refresh_token","implicit","authorization_code")
+                .authorities("ROLE_TRUSTED_CLIENT")
+                .scopes("read", "write", "all")
+                .resourceIds("resource_id")
+                .accessTokenValiditySeconds(60*30)
+                .refreshTokenValiditySeconds(60*60)
+                .secret(passwordEncoder.encode("test_client"));
+
+
+
     }
 
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
+        endpoints.authenticationManager(authenticationManager)
+//                .tokenServices(tokenServices())
+                .tokenStore(tokenStore())
+                .accessTokenConverter(accessTokenConverter())
+                .userDetailsService(userDetailsService());
 
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(
-                Arrays.asList(tokenEnhancer(), accessTokenConverter()));
-
-        endpoints.tokenStore(tokenStore())
-                .tokenEnhancer(tokenEnhancerChain)
-                .userDetailsService(userDetailsService())
-                .authenticationManager(authenticationManager);
-        endpoints.tokenServices(defaultTokenServices());
         endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST, HttpMethod.DELETE);
     }
 
@@ -81,24 +79,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
 
-    @Bean
-    public ClientDetailsService clientDetails() {
-
-        InMemoryClientDetailsService inMemoryClientDetailsService = new InMemoryClientDetailsService();
-
-        Map<String, ClientDetails> clientDetailsStore = new HashMap<>();
-
-        BaseClientDetails clientDetails =  new BaseClientDetails("test_client", "",
-                "all", "implicit,authorization_code", "ROLE_USER,ROLE_TRUSTED_CLIENT","http://localhost:8081/client1/login,http://localhost:8082/client2/login");
-
-        clientDetails.setClientSecret(passwordEncoder.encode("test_client"));
-        clientDetailsStore.put("test_client",clientDetails);
-
-        inMemoryClientDetailsService.setClientDetailsStore(clientDetailsStore);
-
-        return inMemoryClientDetailsService;
-    }
-
 //    @Bean
 //    public TokenStore tokenStore() {
 //        return new InMemoryTokenStore();
@@ -115,24 +95,24 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey("123");
         return converter;
+
     }
 
 
-    @Bean
-    public DefaultTokenServices defaultTokenServices() {
-        DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(tokenStore());
-        tokenServices.setSupportRefreshToken(true);
-        tokenServices.setClientDetailsService(clientDetails());
-        tokenServices.setAccessTokenValiditySeconds(60 * 30); // token有效期自定义设置，默认12小时
-        tokenServices.setRefreshTokenValiditySeconds(60 * 60);//默认30天，这里修改
-        return tokenServices;
-    }
+//    @Bean
+//    public DefaultTokenServices tokenServices() {
+//        DefaultTokenServices tokenServices = new DefaultTokenServices();
+//        tokenServices.setTokenStore(tokenStore());
+//        tokenServices.setSupportRefreshToken(true);
+////        tokenServices.setAccessTokenValiditySeconds(60 * 30); // token有效期自定义设置，默认12小时
+////        tokenServices.setRefreshTokenValiditySeconds(60 * 60);//默认30天，这里修改
+//        return tokenServices;
+//    }
 
 
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return new CustomTokenEnhancer();
-    }
+//    @Bean
+//    public TokenEnhancer tokenEnhancer() {
+//        return new CustomTokenEnhancer();
+//    }
 
 }

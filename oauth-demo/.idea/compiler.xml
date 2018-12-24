@@ -11,5 +11,11 @@
         <module name="oauth-demo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="client1" target="1.8" />
+      <module name="client2" target="1.8" />
+      <module name="oauth-demo" target="1.8" />
+      <module name="sso-demo" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
