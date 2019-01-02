@@ -35,14 +35,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         clients.inMemory()
-                .withClient("test_client")
+                .withClient("test_client").secret(passwordEncoder.encode("test_client"))
                 .authorizedGrantTypes("client_credentials", "password", "refresh_token","implicit","authorization_code")
                 .authorities("ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "all")
                 .resourceIds("resource_id")
+                .autoApprove(true) // 自动认证
+                .redirectUris("http://localhost:8081/client1/login", "http://localhost:8082/client2/login")
                 .accessTokenValiditySeconds(60*30)
-                .refreshTokenValiditySeconds(60*60)
-                .secret(passwordEncoder.encode("test_client"));
+                .refreshTokenValiditySeconds(60*60);
+
 
 
 

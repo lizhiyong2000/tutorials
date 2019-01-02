@@ -1,14 +1,12 @@
-package com.example.oauth.client1;
-
-
+package com.example.oauth.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
 @Controller
-public class DemoController {
+public class AuthController
+{
 
     @GetMapping(path = "/")
     public String index() {
@@ -16,8 +14,9 @@ public class DemoController {
     }
 
 
-    @GetMapping(path = "/securedPage")
+    @GetMapping(path = "/login")
     public String login() {
-        return "securedPage";
+        return "login";
     }
+
 }

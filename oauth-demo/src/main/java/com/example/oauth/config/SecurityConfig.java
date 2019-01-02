@@ -20,24 +20,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.rememberMe()
+        http.requestMatchers().antMatchers("/login", "/oauth/authorize")
             .and()
                 .authorizeRequests()
                     .anyRequest().authenticated()
-                    .antMatchers("/login**").permitAll()
-                    .antMatchers("/logout**").permitAll()
-                    .antMatchers("/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
-                    .antMatchers("/auth/**", "/oauth2/**").permitAll()
+//                    .antMatchers("/logout**").permitAll()
+//                    .antMatchers("/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
             .and()
-                .formLogin().permitAll()
+                .formLogin().loginPage("/login").permitAll()
+//            .and()
+//                .logout()
+//                    .logoutSuccessUrl("/logout_success")
+//                    .invalidateHttpSession(true)
+//                    .permitAll()
             .and()
-                .logout()
-                    .logoutSuccessUrl("/logout_success")
-                    .invalidateHttpSession(true)
-                    .permitAll()
-            .and()
-                .csrf()
-                    .disable();
+                .csrf().disable();
     }
 
     @Override
