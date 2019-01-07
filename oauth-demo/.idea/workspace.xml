@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="137efdbb-345b-4cd8-96f0-68e2354dbdc0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/oauth/controller/ApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/oauth/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/oauth/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/login.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sso-demo/client1/src/main/resources/templates/index.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sso-demo/client1/src/main/resources/templates/securedPage.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sso-demo/client2/src/main/resources/templates/index.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sso-demo/client2/src/main/resources/templates/securedPage.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/oauth/DemoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/oauth/config/AuthorizationServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/oauth/config/AuthorizationServerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/oauth/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/oauth/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sso-demo/client1/src/main/java/com/example/oauth/client1/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sso-demo/client1/src/main/java/com/example/oauth/client1/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sso-demo/client1/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../sso-demo/client1/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sso-demo/client2/src/main/java/com/example/oauth/client2/DemoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sso-demo/client2/src/main/java/com/example/oauth/client2/DemoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sso-demo/client2/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../sso-demo/client2/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sso-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sso-demo/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,8 +21,8 @@
       <file leaf-file-name="AuthorizationServerConfig.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/oauth/config/AuthorizationServerConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="38" column="93" selection-start-line="38" selection-start-column="93" selection-end-line="38" selection-end-column="93" />
+            <state relative-caret-position="15">
+              <caret line="28" column="56" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,19 +32,19 @@
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../sso-demo/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="1035">
               <caret line="69" column="60" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
             </state>
           </provider>
-          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
         </entry>
       </file>
       <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -71,7 +52,7 @@
       <file leaf-file-name="DemoController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../sso-demo/client1/src/main/java/com/example/oauth/client1/DemoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="135">
               <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -84,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/../sso-demo/client1/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -92,7 +73,7 @@
       <file leaf-file-name="DemoController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/java/com/example/oauth/client2/DemoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="105">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -110,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/resources/templates/securedPage.ftl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -234,10 +215,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="372" />
-    <option name="y" value="184" />
-    <option name="width" value="1647" />
-    <option name="height" value="654" />
+    <option name="x" value="69" />
+    <option name="y" value="88" />
+    <option name="width" value="1833" />
+    <option name="height" value="959" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -247,7 +228,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -256,279 +236,11 @@
               <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oauth-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oauth-demo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sso-demo" type="462c0819:PsiDirectoryNode" />
-              <item name="client2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -715,7 +427,8 @@
       <workItem from="1545484128373" duration="1046000" />
       <workItem from="1545614989355" duration="11693000" />
       <workItem from="1545807671188" duration="3086000" />
-      <workItem from="1546390019032" duration="5176000" />
+      <workItem from="1546390019032" duration="7003000" />
+      <workItem from="1546562722647" duration="755000" />
     </task>
     <task id="LOCAL-00001" summary="#update sso demo">
       <created>1545306010225</created>
@@ -745,29 +458,34 @@
       <option name="project" value="LOCAL" />
       <updated>1545633534292</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="#更新demo">
+      <created>1546395411334</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1546395411334</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66921000" />
+    <option name="totallyTimeSpent" value="69503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4975466" weight="0.3243243" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.503453" side_tool="true" weight="0.55989236" />
       <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.08347153" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49654695" visible="true" weight="0.45405406" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49654695" weight="0.45405406" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="right" id="Mongo Explorer" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.27783784" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.27783784" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21558872" />
       <window_info anchor="right" id="Bean Validation" order="3" />
@@ -781,6 +499,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38594595" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4975466" weight="0.3243243" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -830,7 +549,8 @@
     <MESSAGE value="#修改client secret 问题" />
     <MESSAGE value="#add ignore" />
     <MESSAGE value="#更新jwt配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="#更新jwt配置" />
+    <MESSAGE value="#更新demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="#更新demo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -993,9 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,9 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" selection-start-line="10" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1053,9 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1074,8 +785,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client2/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.ftl">
       <provider selected="true" editor-type-id="text-editor">
@@ -1092,12 +803,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="68" column="58" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="58" />
         </state>
       </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/thymeleaf/thymeleaf/3.0.11.RELEASE/thymeleaf-3.0.11.RELEASE.jar!/org/thymeleaf/templateresolver/ITemplateResolver.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1117,9 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="480" selection-start-line="480" selection-end-line="480" />
-          <folding>
-            <element signature="e#17720#17721#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1159,24 +867,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client1/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="1035">
           <caret line="69" column="60" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
         </state>
       </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/java/com/example/oauth/client2/DemoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="105">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1200,27 +908,27 @@
     <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/resources/templates/securedPage.ftl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client1/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client2/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="56" lean-forward="true" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../sso-demo/client1/src/main/java/com/example/oauth/client1/DemoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="135">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1230,8 +938,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/oauth/config/AuthorizationServerConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="38" column="93" selection-start-line="38" selection-start-column="93" selection-end-line="38" selection-end-column="93" />
+        <state relative-caret-position="15">
+          <caret line="28" column="56" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
