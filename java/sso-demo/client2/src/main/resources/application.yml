@@ -1,0 +1,23 @@
+server:
+    port: 8082
+    servlet:
+        context-path: /client2
+spring:
+    thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      suffix: .ftl
+      mode: HTML5
+      encoding: UTF-8
+      servlet:
+        content-type: text/html
+      check-template: true
+security:
+    oauth2:
+        client:
+            clientId: test_client
+            clientSecret: test_client
+            accessTokenUri: http://localhost:8080/auth/oauth/token
+            userAuthorizationUri: http://localhost:8080/auth/oauth/authorize
+        resource:
+            userInfoUri: http://localhost:8080/auth/user

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback-demo</contextName>
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender"> <!--展示格式 layout-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" >
+            <customFields>{"appname":"webdemo"}</customFields>
+            <includeMdc>true</includeMdc>
+            <includeContext>true</includeContext>
+            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                <rootCauseFirst>true</rootCauseFirst>
+            </throwableConverter>
+        </encoder>
+
+
+        <!--<encoder>-->
+            <!--&lt;!&ndash;<layout class="net.logstash.logback.layout.LogstashLayout">&ndash;&gt;-->
+                <!--&lt;!&ndash;<includeContext>true</includeContext>&ndash;&gt;-->
+                <!--&lt;!&ndash;<includeCallerData>true</includeCallerData>&ndash;&gt;-->
+                <!--&lt;!&ndash;<customFields>{"system":"test"}</customFields>&ndash;&gt;-->
+                <!--&lt;!&ndash;<fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;</layout>&ndash;&gt;-->
+            <!--&lt;!&ndash;<charset>UTF-8</charset>&ndash;&gt;-->
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+        <!--</encoder>-->
+        <topic>applog</topic>
+        <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.NoKeyKeyingStrategy" />
+        <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+
+        <!-- Optional parameter to use a fixed partition -->
+        <!-- <partition>0</partition> -->
+
+        <!-- Optional parameter to include log timestamps into the kafka message -->
+        <!-- <appendTimestamp>true</appendTimestamp> -->
+
+        <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+        <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+        <!-- bootstrap.servers is the only mandatory producerConfig -->
+        <producerConfig>bootstrap.servers=192.168.2.42:30093,192.168.2.42:30094,192.168.2.42:30095</producerConfig>
+
+        <!-- this is the fallback appender if kafka is not available. -->
+        <appender-ref ref="consoleLog" />
+    </appender>
+
+
+    <!--<appender name="kafkaAppender" class="com.github.danielwegener.logback.kafka.KafkaAppender">-->
+        <!--<encoder class="com.github.danielwegener.logback.kafka.encoding.LayoutKafkaMessageEncoder">-->
+            <!--<layout class="net.logstash.logback.layout.LogstashLayout">-->
+                <!--<includeContext>true</includeContext>-->
+                <!--<includeCallerData>true</includeCallerData>-->
+                <!--<customFields>{"system":"test"}</customFields>-->
+                <!--<fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames"/>-->
+            <!--</layout>-->
+            <!--<charset>UTF-8</charset>-->
+        <!--</encoder>-->
+        <!--<topic>applog</topic>-->
+        <!--<keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy"/>-->
+        <!--<deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy"/>-->
+        <!--<producerConfig>bootstrap.servers=192.168.2.42:30093,192.168.2.42:30094,192.168.2.42:30095</producerConfig>-->
+    <!--</appender>-->
+
+    <root level="INFO">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="kafkaAppender"/>
+    </root>
+</configuration>
