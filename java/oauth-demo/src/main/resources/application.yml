@@ -1,0 +1,19 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /auth
+spring:
+    thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      suffix: .ftl
+      mode: HTML5
+      encoding: UTF-8
+      servlet:
+        content-type: text/html
+      check-template: true
+logging:
+  level:
+    org:
+        springframework:
+            security: DEBUG
