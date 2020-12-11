@@ -251,7 +251,8 @@ class MotionTrackWidget(QtWidgets.QWidget):
 
         # stream_url = "rtsp://admin:dm666666@192.168.30.224:554/h264/ch1/main/av_stream"
         # stream_url = "rtsp://admin:dp666666@192.168.10.250:554/1/1"
-        stream_url = "./vlc.mp4"
+        # stream_url = "./vlc.mp4"
+        stream_url = "./cap.mov"
         self.record_video = RecordVideo(stream_url)
         self.analysing = False
 
