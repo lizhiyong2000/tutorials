@@ -28,7 +28,7 @@ app = QApplication(sys.argv)
 widget = MotionTrackWidget()
 
 
-widget.resize(1080, 640)
+widget.resize(1280, 434)
 widget.setWindowTitle('OpenCV Demo')
 
 widget.show()

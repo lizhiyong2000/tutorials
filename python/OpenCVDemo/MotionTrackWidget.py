@@ -1,3 +1,4 @@
+import collections
 import sys
 from os import path
 
@@ -9,6 +10,7 @@ from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 
+from CVImageWidget import CVImageWidget
 from motion_track_utils import detect_person_and_vehicle, box_intersection, MotionDetector
 
 trackerTypes = ['BOOSTING', 'MIL', 'KCF','TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
@@ -45,12 +47,19 @@ class RecordVideo(QtCore.QObject):
 
     def __init__(self, camera_url=0, parent=None):
         super().__init__(parent)
-        self.camera = cv2.VideoCapture(camera_url)
+        self.camera_url = camera_url
 
+        self.camera = None
         self.timer = QtCore.QBasicTimer()
 
     def start_recording(self):
+        self.camera = cv2.VideoCapture(self.camera_url)
         self.timer.start(0, self)
+
+    def stop_recording(self):
+        self.timer.stop()
+        if self.camera:
+            self.camera.release()
 
     def timerEvent(self, event):
         if (event.timerId() != self.timer.timerId()):
@@ -60,18 +69,87 @@ class RecordVideo(QtCore.QObject):
         if read:
             self.image_data.emit(data)
 
+class MotionDetectWidget(CVImageWidget):
 
-class MotionTrackingWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.image = QtGui.QImage()
-        self._red = (0, 0, 255)
-        self._width = 2
-        self._min_size = (30, 30)
+        self.resize(640, 360)
+        # 初始化当前帧的前两帧
+        self.lastFrame1 = None
+        self.lastFrame2 = None
+
+        self.frameDelta1 = None
+        self.frameDelta2 = None
+
+        # 缓存最近5帧的结果矩形框
+        self.last_frame_boxes_cache = collections.deque(maxlen=5)
+
+    def image_data_slot(self, frame):
+        # 如果第一二帧是None，对其进行初始化,计算第一二帧的不同
+        if self.lastFrame2 is None:
+            if self.lastFrame1 is None:
+                self.lastFrame1 = frame
+            else:
+                self.lastFrame2 = frame
+                # global frameDelta1  # 全局变量
+                self.frameDelta1 = cv2.absdiff(self.lastFrame1, self.lastFrame2)  # 帧差一
+            return
+
+        mask = np.zeros(frame.shape[:2],dtype=np.uint8)
+
+        # 计算当前帧和前帧的不同,计算三帧差分
+        self.frameDelta2 = cv2.absdiff(self.lastFrame2, frame)  # 帧差二
+        thresh = cv2.bitwise_and(self.frameDelta1, self.frameDelta2)  # 图像与运算
+
+        # 当前帧设为下一帧的前帧,前帧设为下一帧的前前帧,帧差二设为帧差一
+        self.lastFrame1 = self.lastFrame2
+        self.lastFrame2 = frame.copy()
+        self.frameDelta1 = self.frameDelta2
+
+        # 结果转为灰度图
+        thresh = cv2.cvtColor(thresh, cv2.COLOR_RGB2GRAY)
+        thresh = cv2.GaussianBlur(thresh, (21, 21), 0)
+
+        # 去除图像噪声,先腐蚀再膨胀(形态学开运算)
+        thresh = cv2.dilate(thresh, None, iterations=3)
+        thresh = cv2.erode(thresh, None, iterations=1)
+
+        # 阀值图像上的轮廓位置
+        cnts, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        # 遍历轮廓
+        for c in cnts:
+
+            (x, y, w, h) = cv2.boundingRect(c)
+            if w < 50 or h < 50:
+                continue
+            cv2.drawContours(mask, [c], 0, (255,255,255),1)
+            # 忽略小轮廓，排除误差
+
+        cnts, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        #
+        mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+        for c in cnts:
+            # cv2.drawContours(mask, [c], 0, (255,255,0),2)
+            (x, y, w, h) = cv2.boundingRect(c)
+            if w < 50 or h < 50:
+                continue
+            cv2.rectangle(mask, (x, y), (x + w, y + h), (255, 255, 0), 2)
+
+        self.image = self.get_qimage(mask)
+        self.update()
+
+class MotionTrackingWidget(CVImageWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.resize(640, 360)
         self.tracking = 0
         self.motion_detector = MotionDetector()
         self.multiTracker = cv2.MultiTracker_create()
 
+    def image_data_slot(self, frame):
+
+        self.image = self.get_qimage(frame)
+        self.update()
 
     def init_track(self, frame):
 
@@ -153,7 +231,6 @@ class MotionTrackingWidget(QtWidgets.QWidget):
             p2 = (int(newbox[0] + newbox[2]), int(newbox[1] + newbox[3]))
             cv2.rectangle(frame, p1, p2, (0, 255, 0), 2, 1)
 
-
     def image_data_slot(self, frame):
 
         height, width, colors = frame.shape
@@ -165,27 +242,6 @@ class MotionTrackingWidget(QtWidgets.QWidget):
         self.image = self.get_qimage(frame)
         self.update()
 
-    def get_qimage(self, image: np.ndarray):
-        height, width, colors = image.shape
-        bytesPerLine = 3 * width
-        QImage = QtGui.QImage
-
-        image = QImage(image.data,
-                       width,
-                       height,
-                       bytesPerLine,
-                       QImage.Format_RGB888)
-
-        image = image.rgbSwapped()
-        return image
-
-    def paintEvent(self, event):
-
-        scaled_image = self.image.scaled(self.width(), self.height())
-        painter = QtGui.QPainter(self)
-        painter.drawImage(0, 0, scaled_image)
-        self.image = QtGui.QImage()
-
 
 
 
@@ -193,24 +249,39 @@ class MotionTrackWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.tracking_widget = MotionTrackingWidget()
-
         # stream_url = "rtsp://admin:dm666666@192.168.30.224:554/h264/ch1/main/av_stream"
         # stream_url = "rtsp://admin:dp666666@192.168.10.250:554/1/1"
         stream_url = "./vlc.mp4"
-
         self.record_video = RecordVideo(stream_url)
+        self.analysing = False
 
-        image_data_slot = self.tracking_widget.image_data_slot
-        self.record_video.image_data.connect(image_data_slot)
+        self.detect_widget = MotionDetectWidget()
+        self.tracking_widget = MotionTrackingWidget()
 
-        layout = QtWidgets.QVBoxLayout()
+        self.record_video.image_data.connect(self.detect_widget.image_data_slot)
+        self.record_video.image_data.connect(self.tracking_widget.image_data_slot)
 
+        layout = QtWidgets.QHBoxLayout()
+        layout.addWidget(self.detect_widget)
         layout.addWidget(self.tracking_widget)
+
+        layout2 = QtWidgets.QVBoxLayout()
+
+        layout2.addLayout(layout, stretch=0)
+
         self.run_button = QtWidgets.QPushButton('Start')
-        layout.addWidget(self.run_button)
+        layout2.addWidget(self.run_button)
 
         self.run_button.clicked.connect(self.record_video.start_recording)
-        self.setLayout(layout)
+        self.setLayout(layout2)
+
+    def start_analysize(self):
+
+        if self.analysing:
+            self.record_video.stop_recording()
+            self.record_video.start_recording()
+
+        # self.detect_widget.resize(640, 360)
+        # self.tracking_widget.resize(640, 360)
 
 

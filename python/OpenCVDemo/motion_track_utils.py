@@ -207,11 +207,6 @@ class MotionDetector:
         pass
 
     def detect(self, frame):
-        # 调整该帧的大小
-        # frame = cv2.resize(frame, (800, 480), interpolation=cv2.INTER_CUBIC)
-        # 显示当前帧
-        # cv2.imshow("frame", frame)
-
         # 如果第一二帧是None，对其进行初始化,计算第一二帧的不同
         if self.lastFrame2 is None:
             if self.lastFrame1 is None:
@@ -221,6 +216,8 @@ class MotionDetector:
                 # global frameDelta1  # 全局变量
                 self.frameDelta1 = cv2.absdiff(self.lastFrame1, self.lastFrame2)  # 帧差一
             return False, None
+
+        mask = np.zeros(frame.shape[:2],dtype=np.uint8)
 
         # 计算当前帧和前帧的不同,计算三帧差分
         self.frameDelta2 = cv2.absdiff(self.lastFrame2, frame)  # 帧差二
@@ -232,11 +229,8 @@ class MotionDetector:
         self.frameDelta1 = self.frameDelta2
 
         # 结果转为灰度图
-        # thresh = cv2.cvtColor(thresh, cv2.COLOR_BGR2GRAY)
         thresh = cv2.cvtColor(thresh, cv2.COLOR_RGB2GRAY)
-
-        # 图像二值化
-        thresh = cv2.threshold(thresh, 25, 255, cv2.THRESH_BINARY)[1]
+        thresh = cv2.GaussianBlur(thresh, (21, 21), 0)
 
         # 去除图像噪声,先腐蚀再膨胀(形态学开运算)
         thresh = cv2.dilate(thresh, None, iterations=3)
@@ -244,25 +238,30 @@ class MotionDetector:
 
         # 阀值图像上的轮廓位置
         cnts, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-        # self.logger.info("{} Contours".format(len(cnts)))
-        motion_detected = False
-        motion_boxes = []
         # 遍历轮廓
         for c in cnts:
-            # 忽略小轮廓，排除误差
-            if cv2.contourArea(c) < 800:
-                continue
 
-            # 计算轮廓的边界框，在当前帧中画出该框
             (x, y, w, h) = cv2.boundingRect(c)
-            if w < 30 or h < 30:
+            if w < 50 or h < 50:
+                continue
+            cv2.drawContours(mask, [c], 0, (255,255,255),1)
+            # 忽略小轮廓，排除误差
+
+        cnts, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        #
+        mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+
+        motion_detected = False
+        motion_boxes = []
+
+        for c in cnts:
+            # cv2.drawContours(mask, [c], 0, (255,255,0),2)
+            (x, y, w, h) = cv2.boundingRect(c)
+            if w < 50 or h < 50:
                 continue
             motion_boxes.append([x, y, x + w, y + h])
             motion_detected = True
-            # cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        # 临近的两个矩形框融合
-        box_select_self(motion_boxes)
+            # cv2.rectangle(mask, (x, y), (x + w, y + h), (255, 255, 0), 2)
 
         if motion_detected:
             return True, motion_boxes
