@@ -244,6 +244,8 @@ class MotionDetector:
             (x, y, w, h) = cv2.boundingRect(c)
             if w < 50 or h < 50:
                 continue
+            if h > 500:
+                continue
             cv2.drawContours(mask, [c], 0, (255,255,255),1)
             # 忽略小轮廓，排除误差
 

@@ -49,6 +49,8 @@ class RecordVideo(QtCore.QObject):
         super().__init__(parent)
         self.camera_url = camera_url
 
+        self.index = 0
+
         self.camera = None
         self.timer = QtCore.QBasicTimer()
 
@@ -67,7 +69,10 @@ class RecordVideo(QtCore.QObject):
 
         read, data = self.camera.read()
         if read:
-            self.image_data.emit(data)
+            self.index += 1
+            if self.index > 3:
+                self.image_data.emit(data)
+                self.index = 0
 
 class MotionDetectWidget(CVImageWidget):
 
@@ -131,7 +136,10 @@ class MotionDetectWidget(CVImageWidget):
         for c in cnts:
             # cv2.drawContours(mask, [c], 0, (255,255,0),2)
             (x, y, w, h) = cv2.boundingRect(c)
+            # print(h)
             if w < 50 or h < 50:
+                continue
+            if h > 500:
                 continue
             cv2.rectangle(mask, (x, y), (x + w, y + h), (255, 255, 0), 2)
 
