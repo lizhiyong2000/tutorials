@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>1</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -19,45 +25,72 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>641</width>
-      <height>341</height>
+      <width>781</width>
+      <height>581</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinAndMaxSize</enum>
+     </property>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
        <property name="spacing">
         <number>10</number>
        </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMinimumSize</enum>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QLabel" name="urlLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>视频地址：</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QGraphicsView" name="graphicsView"/>
+        <widget class="QLineEdit" name="urlEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="playButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>播放</string>
+         </property>
+        </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QGraphicsView" name="graphicsView">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+         <horstretch>3</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

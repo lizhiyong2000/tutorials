@@ -2,6 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QString>
+
+#include "VideoGrabber.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,8 +22,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+public slots:
+    void playOrStop();
 
 private:
-    Ui::MainWindow *ui;
+    QWidget *widget;
+    QLineEdit *urlEdit;
+    
+    VideoGrabber *videoGrabber;
+    
+    
 };
 #endif // MAINWINDOW_H

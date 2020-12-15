@@ -27,20 +27,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
-if(ANDROID)
-  add_library(QtRTSP SHARED
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(ffmpeg REQUIRED IMPORTED_TARGET libavcodec libavformat libavutil libswscale)
+
+#find_package(FFmpeg COMPONENTS AVCODEC AVFORMAT AVUTIL AVDEVICE REQUIRED)
+
+include_directories(thirdparty/live555)
+link_directories(thirdparty/live555/build)
+
+
+
+add_executable(QtRTSP
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-  )
-else()
-  add_executable(QtRTSP
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-  )
-endif()
+    VideoDecoder.cpp
+    VideoDecoder.hpp
+    VideoGrabber.cpp
+    VideoGrabber.hpp
+    VideoImageWidget.cpp
+    VideoImageWidget.hpp
+)
+
 
 target_link_libraries(QtRTSP PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(QtRTSP PRIVATE PkgConfig::ffmpeg)
+target_link_libraries(QtRTSP PRIVATE liveMedia)
