@@ -22,6 +22,19 @@ extern "C"
 
 #include <string>
 
+#include <cpprest/http_client.h>
+#include <cpprest/filestream.h>
+#include <cpprest/json.h>
+
+#include "MediaState.hpp"
+
+using namespace utility;                    // Common utilities like string conversions
+using namespace web;                        // Common features like URIs.
+using namespace web::http;                  // Common HTTP functionality
+using namespace web::http::client;          // HTTP client features
+using namespace concurrency::streams;       // Asynchronous streams
+
+
 class VideoGrabber
 {
 public:
@@ -30,6 +43,8 @@ public:
     virtual ~VideoGrabber();
     void stop();
     void start();
+    int initWithDeviceId(const std::string & deviceId);
+    
 //    friend class Video;
 private:
     AVFormatContext *pFormatCtx;
@@ -43,6 +58,12 @@ private:
     int height;
     pthread_mutex_t mutex;
     std::string rtspURL;
+    std::string deviceId;
+    
+    int init();
+    pplx::task<std::string> getVideoUrl();
+    
+    MediaState *mediaState;
 
 };
 

@@ -122,6 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 import datetime
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'account.views.DrfAuthBackend',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',

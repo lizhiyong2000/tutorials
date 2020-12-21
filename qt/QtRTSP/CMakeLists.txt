@@ -32,6 +32,8 @@ pkg_check_modules(ffmpeg REQUIRED IMPORTED_TARGET libavcodec libavformat libavut
 
 #find_package(FFmpeg COMPONENTS AVCODEC AVFORMAT AVUTIL AVDEVICE REQUIRED)
 
+find_package(cpprestsdk REQUIRED)
+
 include_directories(thirdparty/live555)
 link_directories(thirdparty/live555/build)
 
@@ -39,18 +41,23 @@ link_directories(thirdparty/live555/build)
 
 add_executable(QtRTSP
     main.cpp
-    mainwindow.cpp
     mainwindow.h
-    mainwindow.ui
-    VideoDecoder.cpp
-    VideoDecoder.hpp
-    VideoGrabber.cpp
+    mainwindow.cpp
     VideoGrabber.hpp
-    VideoImageWidget.cpp
+    VideoGrabber.cpp
     VideoImageWidget.hpp
+    VideoImageWidget.cpp
+    PacketQueue.hpp
+    PacketQueue.cpp
+    FrameQueue.hpp
+    FrameQueue.cpp
+    MediaState.hpp
+    MediaState.cpp
+    
 )
 
 
 target_link_libraries(QtRTSP PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(QtRTSP PRIVATE PkgConfig::ffmpeg)
 target_link_libraries(QtRTSP PRIVATE liveMedia)
+target_link_libraries(QtRTSP PRIVATE cpprestsdk::cpprest)

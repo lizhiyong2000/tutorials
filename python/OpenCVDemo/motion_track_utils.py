@@ -230,6 +230,8 @@ class MotionDetector:
 
         # 结果转为灰度图
         thresh = cv2.cvtColor(thresh, cv2.COLOR_RGB2GRAY)
+        # 图像二值化
+        thresh = cv2.threshold(thresh, 25, 255, cv2.THRESH_BINARY)[1]
         thresh = cv2.GaussianBlur(thresh, (21, 21), 0)
 
         # 去除图像噪声,先腐蚀再膨胀(形态学开运算)
