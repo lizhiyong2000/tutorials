@@ -9,11 +9,14 @@
 #include <QLineEdit>
 #include <QString>
 
-#include "VideoGrabber.hpp"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class VideoImageWidget;
+class VideoGrabber;
 
 class MainWindow : public QMainWindow
 {
@@ -28,6 +31,8 @@ public slots:
 private:
     QWidget *widget;
     QLineEdit *urlEdit;
+    
+    VideoImageWidget *videoWidget;
     
     VideoGrabber *videoGrabber;
     

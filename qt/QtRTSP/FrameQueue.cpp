@@ -29,7 +29,7 @@ bool FrameQueue::enQueue(const AVFrame* frame)
     queue.push(p);
 
     nb_frames++;
-    printf("frame queue size:%d\n", nb_frames);
+//    printf("frame queue size:%d\n", nb_frames);
     
     pthread_cond_signal(&cond);
     pthread_mutex_unlock(&mutex);

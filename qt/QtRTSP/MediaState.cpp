@@ -141,8 +141,8 @@ VideoState::VideoState()
 //    bmp              = nullptr;
 //    renderer         = nullptr;
 
-    frame            = nullptr;
-    displayFrame     = nullptr;
+//    frame            = nullptr;
+//    displayFrame     = nullptr;
 
     videoq           = new PacketQueue();
 
@@ -150,6 +150,20 @@ VideoState::VideoState()
     frame_last_delay = 0.0;
     frame_last_pts   = 0.0;
     video_clock      = 0.0;
+    
+    frame = av_frame_alloc();
+    displayFrame = av_frame_alloc();
+    
+//    displayFrame->format = AV_PIX_FMT_YUV420P;
+    
+    displayFrame->format = AV_PIX_FMT_RGB24;
+    displayFrame->width = 640;
+    displayFrame->height = 360;
+
+    int numBytes = avpicture_get_size((AVPixelFormat)displayFrame->format,displayFrame->width, displayFrame->height);
+    uint8_t *buffer = (uint8_t*)av_malloc(numBytes * sizeof(uint8_t));
+
+    avpicture_fill((AVPicture*)displayFrame, buffer, (AVPixelFormat)displayFrame->format, displayFrame->width, displayFrame->height);
 }
 
 VideoState::~VideoState()
@@ -341,7 +355,7 @@ void* packet_decode_thread(void *data)
         
         if (packet->stream_index == media->video->stream_index) // video stream
         {
-            printf("packet_thread video\n");
+//            printf("packet_thread video\n");
             media->video->videoq->enQueue(packet);
             av_packet_unref(packet);
         }

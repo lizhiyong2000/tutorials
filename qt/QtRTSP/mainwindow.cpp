@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-
+#include "VideoGrabber.hpp"
 #include "VideoImageWidget.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     layout2->addLayout(layout);
     
-    VideoImageWidget *videoWidget = new VideoImageWidget();
+    videoWidget = new VideoImageWidget();
     videoWidget->setFixedSize(640, 360);
     
     layout2->addWidget(videoWidget);
@@ -72,6 +72,7 @@ void MainWindow::playOrStop(){
     
     if(ret == 0){
         videoGrabber->start();
+        videoWidget->setMediaState(videoGrabber->getMediaState());
     }
 }
 

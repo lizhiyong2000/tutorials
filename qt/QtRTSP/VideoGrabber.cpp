@@ -66,6 +66,10 @@ int VideoGrabber::initWithDeviceId(const std::string &device_id){
     
 }
 
+MediaState* VideoGrabber::getMediaState(){
+    return mediaState;
+}
+
 int VideoGrabber::initWithUrl(const std::string & url){
     rtspURL=url;
     return init();
@@ -154,7 +158,7 @@ void VideoGrabber::start(){
 //    {
 //        if(packet.stream_index==videoStream)
 //        {
-//            
+//
 //            int res = avcodec_send_packet(pCodecCtx, &packet);
 //            if (res < 0){
 //                printf("__________avcodec_send_packet exception_____________e\n");
@@ -166,8 +170,8 @@ void VideoGrabber::start(){
 //                printf("__________avcodec_receive_frame exception_____________e\n");
 //                continue;
 //            }
-//            
-//            
+//
+//
 //            printf("***************ffmpeg decodec*******************\n");
 //            pthread_mutex_lock(&mutex);
 //            int rs = sws_scale(pSwsCtx, (const uint8_t* const *) pFrame->data,
@@ -179,7 +183,7 @@ void VideoGrabber::start(){
 //                printf("__________Can open to change to des imag_____________e\n");
 ////                    return -1;
 //            }
-//            
+//
 ////            avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished, &packet);
 ////            if (frameFinished)
 ////            {

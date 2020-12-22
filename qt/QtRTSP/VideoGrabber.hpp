@@ -45,6 +45,8 @@ public:
     void start();
     int initWithDeviceId(const std::string & deviceId);
     
+    MediaState* getMediaState();
+    
 //    friend class Video;
 private:
     AVFormatContext *pFormatCtx;
